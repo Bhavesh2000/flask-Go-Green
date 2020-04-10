@@ -254,6 +254,26 @@ def upload_file():
                 img_counter = Imagee.query.get(id)
                 img_counter.counter = 'static/img/counter_' + filename
                 db.session.commit()
+                #CALCULATING OXYGEN AND CARBONDIOXIDE IN AIR
+                #VALUES ASSIGN
+                data_values = Imagee.query.get(id)
+                no_of_people = data_values.population
+                no_of_two_wheel = data_values.bikes
+                no_of_four_wheel_car = data_values.car
+                no_of_four_wheel_bus = data_values.bus
+                tree_count = data_values.trees
+                #AMOUNT OF CARBONDIOXIDE
+                carbon_people = 0.9 * no_of_people
+                carbon_two_wheel = 0.0266 * no_of_two_wheel
+                carbon_four_wheel_car = 0.21595 * no_of_four_wheel_car
+                carbon_four_wheel_bus = 0.5152 * no_of_four_wheel_bus
+                total_carbon = carbon_people + carbon_two_wheel + carbon_four_wheel_car + carbon_four_wheel_bus
+                #AMOUNT OF OXYGEN CONSUME
+                oxygen_people = 1200 * no_of_people
+                #OXYGEN PRODUCED
+                oxygen_produced = tree_count * 0.3230
+
+                #MESSAGE
                 flash("Image Uploaded")
                 return redirect(url_for('get_details', id=id))
             else:
