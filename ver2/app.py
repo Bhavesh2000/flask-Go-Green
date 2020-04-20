@@ -217,7 +217,6 @@ def upload_file():
                                 #DIFFERENCE MUST BE OF 10
                                 elif (zz > 10 and xx > 10):
                                     image.putpixel((x, y), (255, 255, 255))
-                                    print(red, green, blue)
                                 #FILL BLACK COLOR
                                 else:
                                     image.putpixel((x, y), (0, 0, 0))
@@ -240,7 +239,7 @@ def upload_file():
                 for c in contours:
                     x, y, w, h = cv2.boundingRect(c)
                     aa = (w) * (h)
-                    if aa > 2:
+                    if aa > 70:
                         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
                         coo = coo + 1
                     else:
@@ -263,15 +262,35 @@ def upload_file():
                 no_of_four_wheel_bus = data_values.bus
                 tree_count = data_values.trees
                 #AMOUNT OF CARBONDIOXIDE
-                carbon_people = 0.9 * no_of_people
-                carbon_two_wheel = 0.0266 * no_of_two_wheel
-                carbon_four_wheel_car = 0.21595 * no_of_four_wheel_car
-                carbon_four_wheel_bus = 0.5152 * no_of_four_wheel_bus
-                total_carbon = carbon_people + carbon_two_wheel + carbon_four_wheel_car + carbon_four_wheel_bus
+                carbon_people = (454.54 * float(no_of_people))
+                carbon_two_wheel = (16.86 * 0.26 *float(no_of_two_wheel))
+                carbon_four_wheel_car = (59.09 * 0.26 * float(no_of_four_wheel_car))
+                carbon_four_wheel_bus =  (299.39* 0.26 *float(no_of_four_wheel_bus))
+                carbon_consume_tree = (float(tree_count) * 30.13)
+                total_carbon = carbon_people + carbon_two_wheel + carbon_four_wheel_car + carbon_four_wheel_bus - carbon_consume_tree
                 #AMOUNT OF OXYGEN CONSUME
-                oxygen_people = 1200 * no_of_people
+                oxygen_people = (576 * float(no_of_people))
                 #OXYGEN PRODUCED
-                oxygen_produced = tree_count * 0.3230
+                oxygen_produced = (float(tree_count) * 230.4)
+                t_oxygen= oxygen_produced - oxygen_people
+                no_of_required_tree=0
+                tpm=round(float(no_of_people)*2.5)
+                if(int(tree_count) <= tpm):
+                    aqi="LOW"
+                    nop="YES"
+                    no_of_required_tree = tpm-int(tree_count)
+                else:
+                    aqi = "Ample"
+                    nop= "No"
+                val = Imagee.query.get(id)
+                val.carbon = total_carbon
+                val.oxygen = oxygen_produced
+                val.aqi=aqi
+                val.plantation = nop
+                val.planted = no_of_required_tree
+                db.session.commit()
+
+
 
                 #MESSAGE
                 flash("Image Uploaded")
