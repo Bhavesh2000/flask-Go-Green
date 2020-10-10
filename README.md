@@ -1,7 +1,7 @@
 # Flask-Go-Green
 Web-based project "Go Green Using Satellite Image Processing." 
 
-![alt text](https://github.com/Bhavesh2000/flask-Go-Green/blob/master/ver2/static/gogreen_login.png)
+![alt text](https://github.com/wanibhavesh/flask-Go-Green/blob/master/Code/static/gogreen_login.png)
 
 ### Developer
 - Bhavesh Wani
