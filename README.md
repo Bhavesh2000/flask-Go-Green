@@ -1,6 +1,6 @@
 # Flask-Go-Green
 Web-based project "Go Green Using Satellite Image Processing." 
-
+This project is also implemented using TensorFlow Object Detection. [Link to code](https://drive.google.com/drive/folders/19MRTcS1Jmuc6pKFmQoZj9OuZEE_UiJ2G?usp=sharing)
 ![alt text](https://github.com/wanibhavesh/flask-Go-Green/blob/master/Code/static/gogreen_login.png)
 
 ### Developer
