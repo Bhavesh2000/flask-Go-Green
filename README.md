@@ -25,8 +25,8 @@ To detect trees and analyze air quality in specific area.
 
 ### Sqlite3
 python
->>from app import db
->>db.create_all()
+from app import db
+db.create_all()
 
 sqlite3 db.db
 .tables
