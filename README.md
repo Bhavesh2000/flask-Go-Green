@@ -1,5 +1,5 @@
-# Flask-Go-Green
-Web-based project "Go Green Using Satellite Image Processing." 
+# Environmental-Standard-Computation-and-Quality-Analysis
+Web-based project "Environmental-Standard-Computation-and-Quality-Analysis" 
 [Link to Full Project](https://drive.google.com/drive/folders/1uvND3FVsvQlsGh7CZ0HcN6okUqvv-DDW?usp=sharing)
 ![alt text](https://github.com/wanibhavesh/flask-Go-Green/blob/master/Code/static/gogreen_login.png)
 
